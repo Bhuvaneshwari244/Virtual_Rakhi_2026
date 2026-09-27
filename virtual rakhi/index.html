@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Virtual Raksha Bandhan Ceremony 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Audio Control -->
+    <div class="audio-control">
+        <button id="audioToggle" class="audio-btn">
+            <span class="audio-icon">🔊</span>
+        </button>
+    </div>
+
+    <!-- Background Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Welcome Screen -->
+    <section id="welcomeScreen" class="screen active">
+        <div class="welcome-content">
+            <div class="sister-avatar" id="sisterAvatar">
+                <div class="avatar-body">
+                    <div class="avatar-head">
+                        <div class="avatar-face">
+                            <div class="eyes">
+                                <div class="eye left"></div>
+                                <div class="eye right"></div>
+                            </div>
+                            <div class="smile"></div>
+                        </div>
+                        <div class="hair"></div>
+                        <div class="bindi"></div>
+                    </div>
+                    <div class="avatar-saree"></div>
+                    <div class="hand-wave">👋</div>
+                </div>
+            </div>
+            
+            <h1 class="welcome-title fade-in">Virtual Raksha Bandhan</h1>
+            <p class="welcome-subtitle">Celebrating the sacred bond of love across any distance</p>
+            
+            <div class="name-input-container" id="nameInputContainer">
+                <p class="welcome-text">May I know my dear brother's name?</p>
+                <input type="text" id="brotherNameInput" placeholder="Enter your brother's name" class="name-input">
+                
+                <div class="photo-upload-section">
+                    <p class="upload-text">Add his photo to make this ceremony more special (optional)</p>
+                    <div class="photo-upload-box" id="photoUploadBox">
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                        <label for="photoInput" class="upload-label">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-label-text">Click to upload photo</span>
+                        </label>
+                        <div class="photo-preview" id="photoPreview" style="display: none;">
+                            <img id="uploadedPhoto" src="" alt="Brother's photo">
+                            <button class="remove-photo" id="removePhoto">✕</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" id="submitName">Continue 💖</button>
+            </div>
+
+            <div class="welcome-message-container" id="welcomeMessage" style="display: none;">
+                <p class="sister-message" id="sisterMessage"></p>
+                <div class="choice-buttons">
+                    <button class="btn-primary celebrate-btn" id="yesBtn">Yes, let's celebrate! 💖</button>
+                    <button class="btn-secondary" id="noBtn">No / Maybe later 🥺</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tilak Ceremony Screen -->
+    <section id="tilakScreen" class="screen">
+        <div class="ceremony-content">
+            <h2 class="ceremony-title">Sacred Tilak Ceremony</h2>
+            <p class="ceremony-subtitle">Choose the blessing for your beloved brother</p>
+            
+            <div class="brother-photo-frame" id="brotherPhotoFrame">
+                <div class="photo-placeholder" id="photoPlaceholder">
+                    <span class="photo-text" id="brotherInitial"></span>
+                    <img id="brotherPhoto1" class="brother-uploaded-photo" style="display: none;" alt="Brother">
+                </div>
+                <div class="tilak-mark" id="tilakMark"></div>
+            </div>
+
+            <div class="tilak-options">
+                <div class="tilak-option" data-tilak="kumkum">
+                    <div class="tilak-preview tilak-kumkum"></div>
+                    <p>Traditional Kumkum with Akshat</p>
+                    <span class="option-desc">For prosperity & long life</span>
+                </div>
+                <div class="tilak-option" data-tilak="chandan">
+                    <div class="tilak-preview tilak-chandan"></div>
+                    <p>Elegant Chandan Tilak</p>
+                    <span class="option-desc">For peace & wisdom</span>
+                </div>
+                <div class="tilak-option" data-tilak="trishul">
+                    <div class="tilak-preview tilak-trishul"></div>
+                    <p>Royal Trishul Tilak</p>
+                    <span class="option-desc">For strength & protection</span>
+                </div>
+            </div>
+
+            <div class="hand-animation" id="tilakHand">
+                <div class="hand">✋</div>
+            </div>
+
+            <p class="ceremony-caption" id="tilakCaption" style="opacity: 0;"></p>
+        </div>
+    </section>
+
+    <!-- Aarti Ceremony Screen -->
+    <section id="aartiScreen" class="screen">
+        <div class="ceremony-content">
+            <h2 class="ceremony-title">Aarti Blessing</h2>
+            <p class="ceremony-subtitle">Perform the sacred ritual of light</p>
+            
+            <div class="brother-photo-frame">
+                <div class="photo-placeholder">
+                    <span class="photo-text" id="brotherInitial2"></span>
+                    <img id="brotherPhoto2" class="brother-uploaded-photo" style="display: none;" alt="Brother">
+                </div>
+                <div class="aarti-glow" id="aartiGlow"></div>
+            </div>
+
+            <div class="aarti-thali" id="aartiThali">
+                <div class="thali-plate">
+                    <div class="diya">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="flowers">🌺</div>
+                    <div class="incense">
+                        <div class="smoke"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="performAarti">Perform Aarti 🪔</button>
+            <p class="ceremony-caption" id="aartiCaption" style="opacity: 0;"></p>
+        </div>
+    </section>
+
+    <!-- Rakhi Selection Screen -->
+    <section id="rakhiScreen" class="screen">
+        <div class="ceremony-content">
+            <h2 class="ceremony-title">Choose the Sacred Rakhi</h2>
+            <p class="ceremony-subtitle">Select the thread that symbolizes your eternal bond</p>
+            
+            <div class="rakhi-showcase">
+                <div class="rakhi-option" data-rakhi="zari">
+                    <div class="rakhi-preview rakhi-zari"></div>
+                    <p>Traditional Zari</p>
+                    <span class="option-desc">Timeless elegance</span>
+                </div>
+                <div class="rakhi-option" data-rakhi="rudraksha">
+                    <div class="rakhi-preview rakhi-rudraksha"></div>
+                    <p>Sacred Rudraksha</p>
+                    <span class="option-desc">Divine protection</span>
+                </div>
+                <div class="rakhi-option" data-rakhi="gold">
+                    <div class="rakhi-preview rakhi-gold"></div>
+                    <p>Modern Gold</p>
+                    <span class="option-desc">Contemporary style</span>
+                </div>
+                <div class="rakhi-option" data-rakhi="floral">
+                    <div class="rakhi-preview rakhi-floral"></div>
+                    <p>Colorful Floral</p>
+                    <span class="option-desc">Vibrant beauty</span>
+                </div>
+            </div>
+
+            <div class="wrist-container" id="wristContainer" style="display: none;">
+                <div class="wrist">
+                    <div class="rakhi-tying" id="rakhiTying"></div>
+                </div>
+            </div>
+
+            <p class="ceremony-caption" id="rakhiCaption" style="opacity: 0;"></p>
+        </div>
+    </section>
+
+    <!-- Sweet Feeding Screen -->
+    <section id="sweetScreen" class="screen">
+        <div class="ceremony-content">
+            <h2 class="ceremony-title">Sweet Blessings</h2>
+            <p class="ceremony-subtitle">Choose a sweet to share the joy</p>
+            
+            <div class="brother-photo-frame">
+                <div class="photo-placeholder">
+                    <span class="photo-text" id="brotherInitial3"></span>
+                    <img id="brotherPhoto3" class="brother-uploaded-photo" style="display: none;" alt="Brother">
+                </div>
+            </div>
+
+            <div class="sweet-options">
+                <div class="sweet-option" data-sweet="kaju">
+                    <div class="sweet-preview">🍬</div>
+                    <p>Kaju Katli</p>
+                    <span class="option-desc">Diamond shaped delight</span>
+                </div>
+                <div class="sweet-option" data-sweet="gulab">
+                    <div class="sweet-preview">🍡</div>
+                    <p>Gulab Jamun</p>
+                    <span class="option-desc">Syrupy perfection</span>
+                </div>
+                <div class="sweet-option" data-sweet="laddu">
+                    <div class="sweet-preview">🧈</div>
+                    <p>Motichoor Laddu</p>
+                    <span class="option-desc">Golden bliss</span>
+                </div>
+                <div class="sweet-option" data-sweet="rasgulla">
+                    <div class="sweet-preview">⚪</div>
+                    <p>Rasgulla</p>
+                    <span class="option-desc">Spongy sweetness</span>
+                </div>
+            </div>
+
+            <div class="sweet-animation" id="sweetAnimation"></div>
+            <p class="ceremony-caption" id="sweetCaption" style="opacity: 0;"></p>
+        </div>
+    </section>
+
+    <!-- Hug & Blessings Screen -->
+    <section id="hugScreen" class="screen">
+        <div class="ceremony-content hug-content">
+            <div class="hug-animation" id="hugAnimation">
+                <div class="sister-figure">
+                    <div class="sister-head"></div>
+                    <div class="sister-body"></div>
+                    <div class="sister-arms">
+                        <div class="arm left-arm"></div>
+                        <div class="arm right-arm"></div>
+                    </div>
+                </div>
+                <div class="heart-pulse"></div>
+                <div class="floating-hearts"></div>
+            </div>
+
+            <h2 class="ceremony-title hug-title">Sending You All My Love</h2>
+            <p class="hug-message">Sending you the tightest, warmest hug across all the miles. Always stay safe and blessed, my dearest <span id="brotherNameInHug"></span>.</p>
+            
+            <button class="btn-blessing" id="blessingBtn">Touch Sister's Head for Blessings 🙏</button>
+            
+            <div class="blessing-reveal" id="blessingReveal" style="display: none;">
+                <p class="blessing-message">Thank you for always being my pillar of strength, my secret-keeper, and my forever protector.</p>
+            </div>
+
+            <button class="btn-primary continue-btn" id="continueToFinale" style="display: none;">Continue to Celebration 🎉</button>
+        </div>
+    </section>
+
+    <!-- Grand Finale Screen -->
+    <section id="finaleScreen" class="screen">
+        <div class="ceremony-content finale-content">
+            <div class="fireworks" id="fireworks"></div>
+            <div class="confetti" id="confetti"></div>
+            
+            <h2 class="ceremony-title finale-title">Happy Raksha Bandhan! 💖</h2>
+            
+            <div class="letter-parchment">
+                <div class="letter-content">
+                    <p class="letter-text">
+                        Dear <span id="brotherNameInLetter"></span>,
+                        <br><br>
+                        No distance can ever weaken our bond. Today, as I tie this sacred thread around your wrist, I pray for your happiness, health, and prosperity. You are not just my brother, but my first friend, my protector, and my confidant.
+                        <br><br>
+                        No matter where life takes us, you will always have a special place in my heart.
+                        <br><br>
+                        Happy Raksha Bandhan! 💖
+                        <br><br>
+                        With all my love,<br>
+                        Your Sister
+                    </p>
+                </div>
+            </div>
+
+            <div class="finale-buttons">
+                <button class="btn-primary" id="downloadBtn">Download Memory Card 📸</button>
+                <button class="btn-secondary" id="shareBtn">Share on WhatsApp 📱</button>
+                <button class="btn-secondary" id="replayBtn">Replay Ceremony 🔄</button>
+            </div>
+        </div>
+    </section>
+
+    <audio id="bgMusic" loop>
+        <source src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAABhADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMD/////////////////////////////////////////////////////////////////////AAAAAExhdmM1OC4xMzQAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAAAAAGkAAAAAAAAA0gAAAAAU0VDVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
